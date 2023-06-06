@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem</title>
+</head>
+<body>
+    <a href="index.html">Ir para Folhetos</a>
+    <h1>Contagem</h1>
+    <table>
+        <tr>
+            <th>Publicação</th>
+            <th>Estoque</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td><label for="text"></label>
+                <input type="text"></td>
+            <td><label for="number"></label> 
+                Contar: <input type="number" id="receber" min="1"> 
+                <button onClick="somar()">OK</button>
+            </td>
+            <td id="total">0</td>
+            <td><label for="number"></label>
+            <button onClick="apagar()">apagar</button></td>
+        </tr>
+        <tr>
+            <td><label for="text"></label>
+                <input type="text"></td>
+            <td><label for="number"></label> 
+                Contar: <input type="number" id="receber1" min="1"> 
+                <button onClick="somar1()">OK</button>
+            </td>
+            <td id="total1">0</td>
+            <td> <label for="number"></label>
+            <button onClick="apagar1()">apagar</button></td>
+        </tr>
+    </table>
+        <script>
+            var total = 0
+            function somar(){
+                if (document.getElementById("receber").value === "" || document.getElementById("receber").value < 0){
+                    alert("Digite números maiores ou iguais a zero")
+                }
+                else{
+                total = total + parseFloat(document.getElementById("receber").value);
+                document.getElementById("total").innerHTML = total;    
+                }
+            }
+            function apagar(){
+                total = 0
+                document.getElementById("total").innerHTML = total;
+            }
+            var total1 = 0
+            function somar1(){
+                if (document.getElementById("receber1").value === "" || document.getElementById("receber1").value < 0){
+                    alert("Digite números maiores ou iguais a zero")
+                }
+                else{
+                total1 = total1 + parseFloat(document.getElementById("receber1").value);
+                document.getElementById("total1").innerHTML = total1;      
+                }
+            }
+            function apagar1(){
+                total1 = 0
+                document.getElementById("total1").innerHTML = total1;
+            }
+        </script>
+</body>
+</html>

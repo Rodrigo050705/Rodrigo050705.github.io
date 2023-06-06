@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Contar Folhetos</title>
+</head>
+<body>
+    <a href="relatorio.html">Ir para Contagem</a>
+    <div id="container">
+        <h1>Ajuda para contagem dos folhetos</h1>
+        <p id="tela">Quantidade de folhetos </p>
+        <label for="number"></label>
+        Medida: <input type="number" id="medida">
+        <button onClick="calcular()">ENTER</button>
+
+    </div>
+
+        <script>
+            function calcular(){
+                if (parseFloat(document.getElementById("medida").value) < 0)
+                alert("Digite um valor maior ou igual a zero, por favor :)")
+                else{
+                    var folhetos = parseFloat(document.getElementById("medida").value) * 120
+                    document.getElementById("tela").innerHTML = folhetos
+                }    
+        }
+
+        </script>
+</body>
+</html>
