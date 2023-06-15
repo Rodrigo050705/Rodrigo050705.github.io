@@ -24,8 +24,9 @@
 
         <script>
             function calcular(){
-                if (parseFloat(document.getElementById("medida").value) < 0)
-                alert("Digite um valor maior ou igual a zero, por favor :)")
+                if (parseFloat(document.getElementById("medida").value) < 0){
+                    alert("Digite um valor maior ou igual a zero, por favor :)")
+                }
                 else{
                     var folhetos = parseFloat(document.getElementById("medida").value) * 120
                     document.getElementById("tela").innerHTML = folhetos + " folhetos"
