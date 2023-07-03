@@ -342,7 +342,7 @@
                 <button onClick="apagar31()">apagar</button></td>
             </tr>
             <tr>
-                <td>Outros Livros</td>
+                <td>Outras revistas</td>
                 <td><label for="number"></label> 
                     Contar: <input type="number" class="receber" min="1"> 
                     <button onClick="somar32()">OK</button>
@@ -370,6 +370,16 @@
                 <td class="tudo" id="total34">0</td>
                 <td> <label for="number"></label>
                 <button onClick="apagar34()">apagar</button></td>
+            </tr>
+            <tr>
+                <td>Outros livros</td>
+                <td><label for="number"></label> 
+                    Contar: <input type="number" class="receber" min="1"> 
+                    <button onClick="somar35()">OK</button>
+                </td>
+                <td class="tudo" id="total35">0</td>
+                <td> <label for="number"></label>
+                <button onClick="apagar35()">apagar</button></td>
             </tr>
         </table>
     </div>
@@ -899,6 +909,21 @@
             function apagar34(){
                 total34 = 0
                 document.getElementById("total34").innerHTML = total34;
+            }               
+            var total35 = 0
+            function somar35(){
+                if (receber[35].value === "" || receber[35].value < 0){
+                    alert("Digite números maiores ou iguais a zero")
+                }
+                else{
+                    total35 = total35 + parseFloat(receber[35].value);
+                    document.getElementById("total35").innerHTML = total35;
+                    alert("Contagem feita")      
+                }
+            }
+            function apagar35(){
+                total35 = 0
+                document.getElementById("total35").innerHTML = total35;
             }        
         </script>
 </body>
