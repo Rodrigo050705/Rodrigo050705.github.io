@@ -27,3 +27,28 @@ function somar_4(){
     total_4 = parseFloat(document.getElementById("digitar_4").value) + total_4;
     document.getElementById("sem_qr_4").innerHTML = total_4;
 }
+
+total_5 = 0;
+function somar_5(){
+    total_5 = parseFloat(document.getElementById("digitar_5").value) + total_5;
+    document.getElementById("sem_qr_5").innerHTML = total_5;
+}
+
+total_6 = 0;
+function somar_6(){
+    total_6 = parseFloat(document.getElementById("digitar_6").value) + total_6;
+    document.getElementById("sem_qr_6").innerHTML = total_6;
+}
+
+total_7 = 0;
+function somar_7(){
+    total_7 = parseFloat(document.getElementById("digitar_7").value) + total_7;
+    document.getElementById("sem_qr_7").innerHTML = total_7;
+}
+
+total_8 = 0;
+function somar_8(){
+    total_8 = parseFloat(document.getElementById("digitar_8").value) + total_8;
+    document.getElementById("sem_qr_8").innerHTML = total_8;
+}
+
