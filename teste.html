@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem por QR Code</title>
+    <link rel="stylesheet" href="css/estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity=
+    "sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+    <script src="js/sem_qr.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <main>
+          <div id="reader"></div>
+          <div id="result"></div>
+      </main>
+      <h2>Publicações que não precisa de qr code</h2>
+      <table class="table table-bordered table-striped">
+        <tr>
+          <td>Beneficie-se <input type="number" id="digitar"> <button onclick="somar()"> Somar</button> = Total: <strong><span id="sem_qr">0</span></strong></td>
+          <td>O Reino de Deus já governa <input type="number" id="digitar_1"> <button onclick="somar_1()"> Somar</button> = Total: <strong><span id="sem_qr_1">0</span></strong></td>
+        </tr>
+        <tr>
+          <td>Outros livros <input type="number" id="digitar_2"> <button onclick="somar_2()"> Somar</button> = Total:  <strong><span id="sem_qr_2">0</span></strong></td>
+          <td>Quando morre alguém que amamos <input type="number" id="digitar_3"> <button onclick="somar_3()"> Somar</button> = Total:  <strong><span id="sem_qr_3">0</span></strong></td>
+        </tr>
+        <tr>
+          <td>Jovens perguntam V.2 <input type="number" id="digitar_4"> <button onclick="somar_4()"> Somar</button> = Total:  <strong><span id="sem_qr_4">0</span></strong></td>
+        </tr>
+      </table>
+    </div>
+    <button id="botao_finalizar" onclick="finalizar_scanner()" class="btn btn-success">Finalizar</button>
+    <script>
+        codigo_original = [];
+        criando_lista = [];
+        contado_somar = [];
+        unidades = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        
+        var lista_de_publicacoes = new Map();
+        const scanner = new Html5QrcodeScanner('reader', {
+            qrbox: {
+                width: 250,
+                height: 250,
+            },
+            fps: 20,
+        });
+
+        scanner.render(success, error);
+        
+
+      function success(result) {
+
+        var codigo = result.split("#");
+        console.log(codigo[1])
+        var codigo_essencial = codigo[1].substring(0, 5)
+        console.log(codigo_essencial)
+
+        if(codigo_essencial == "IQ8U5"){
+
+          codigo_original[0] = "wp18.2-T";
+          console.log(codigo_original[0])
+
+          if(lista_de_publicacoes.has(codigo_original[0]) === true){
+
+            contado_somar[0] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[0] = parseInt(lista_de_publicacoes.get(codigo_original[0]) + contado_somar[0]);
+            lista_de_publicacoes.set(codigo_original[0], unidades[0]);
+            console.log('Quantidade', unidades[0])
+
+          }
+
+          else{
+
+            unidades[0] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[0] = lista_de_publicacoes.set(codigo_original[0], unidades[0])
+            console.log(criando_lista[0])
+
+          }
+        }
+
+        else if(codigo_essencial == "K55PT"){
+
+          codigo_original[1] = "wp19.2-T";
+          console.log(codigo_original[1])
+
+          if(lista_de_publicacoes.has(codigo_original[1]) === true){
+
+            contado_somar[1] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[1] = parseInt(lista_de_publicacoes.get(codigo_original[1]) + contado_somar[1]);
+            lista_de_publicacoes.set(codigo_original[1], unidades[1]);
+            console.log('Quantidade', unidades[1])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[1] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[1] = lista_de_publicacoes.set(codigo_original[1], unidades[1])
+            console.log(criando_lista[1])
+
+          }      
+        }
+
+        else if(codigo_essencial == "KCFOD"){
+
+          codigo_original[2] = "wp19.3-T";
+          console.log(codigo_original[2])
+
+          if(lista_de_publicacoes.has(codigo_original[2]) === true){
+
+            contado_somar[2] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[2] = parseInt(lista_de_publicacoes.get(codigo_original[2]) + contado_somar[2]);
+            lista_de_publicacoes.set(codigo_original[2], unidades[2]);
+            console.log('Quantidade', unidades[2])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[2] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[2] = lista_de_publicacoes.set(codigo_original[2], unidades[2])
+            console.log(criando_lista[2])
+
+          }      
+        }
+
+        else if(codigo_essencial == "L08MO"){
+
+          codigo_original[3] = "wp20.1-T";
+          console.log(codigo_original[3])
+
+          if(lista_de_publicacoes.has(codigo_original[3]) === true){
+
+            contado_somar[3] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[3] = parseInt(lista_de_publicacoes.get(codigo_original[3]) + contado_somar[3]);
+            lista_de_publicacoes.set(codigo_original[3], unidades[3]);
+            console.log('Quantidade', unidades[3])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[3] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[3] = lista_de_publicacoes.set(codigo_original[3], unidades[3])
+            console.log(criando_lista[3])
+
+          }      
+        }
+
+        else if(codigo_essencial == "LBEPQ"){
+
+          codigo_original[4] = "wp20.2-T";
+          console.log(codigo_original[4])
+
+          if(lista_de_publicacoes.has(codigo_original[4]) === true){
+
+            contado_somar[4] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[4] = parseInt(lista_de_publicacoes.get(codigo_original[4]) + contado_somar[4]);
+            lista_de_publicacoes.set(codigo_original[4], unidades[4]);
+            console.log('Quantidade', unidades[4])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[4] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[4] = lista_de_publicacoes.set(codigo_original[4], unidades[4])
+            console.log(criando_lista[4])
+
+          }      
+        }
+
+        else if(codigo_essencial == "MGQ27" || codigo_essencial == "PDBRL"){
+
+          codigo_original[5] = "wp21.2-T";
+          console.log(codigo_original[5])
+
+          if(lista_de_publicacoes.has(codigo_original[5]) === true){
+
+            contado_somar[5] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[5] = parseInt(lista_de_publicacoes.get(codigo_original[5]) + contado_somar[5]);
+            lista_de_publicacoes.set(codigo_original[5], unidades[5]);
+            console.log('Quantidade', unidades[5])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[5] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[5] = lista_de_publicacoes.set(codigo_original[5], unidades[5])
+            console.log(criando_lista[5])
+
+          }      
+        }
+
+        else if(codigo_essencial == "NJU1P"){
+
+          codigo_original[6] = "wp22.1-T";
+          console.log(codigo_original[6])
+
+          if(lista_de_publicacoes.has(codigo_original[6]) === true){
+
+            contado_somar[6] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[6] = parseInt(lista_de_publicacoes.get(codigo_original[6]) + contado_somar[6]);
+            lista_de_publicacoes.set(codigo_original[6], unidades[6]);
+            console.log('Quantidade', unidades[6])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[6] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[6] = lista_de_publicacoes.set(codigo_original[6], unidades[6])
+            console.log(criando_lista[6])
+
+          }      
+        }
+
+        else if(codigo_essencial == "PR6DS"){
+
+          codigo_original[7] = "wp23.1-T";
+          console.log(codigo_original[7])
+
+          if(lista_de_publicacoes.has(codigo_original[7]) === true){
+
+            contado_somar[7] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[7] = parseInt(lista_de_publicacoes.get(codigo_original[7]) + contado_somar[7]);
+            lista_de_publicacoes.set(codigo_original[7], unidades[7]);
+            console.log('Quantidade', unidades[7])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[7] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[7] = lista_de_publicacoes.set(codigo_original[7], unidades[7])
+            console.log(criando_lista[7])
+
+          }      
+        }
+
+        else if(codigo_essencial == "ITWAW"){
+
+          codigo_original[8] = "g18.2-T";
+          console.log(codigo_original[8])
+
+          if(lista_de_publicacoes.has(codigo_original[8]) === true){
+
+            contado_somar[8] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[8] = parseInt(lista_de_publicacoes.get(codigo_original[8]) + contado_somar[8]);
+            lista_de_publicacoes.set(codigo_original[8], unidades[8]);
+            console.log('Quantidade', unidades[8])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[8] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[8] = lista_de_publicacoes.set(codigo_original[8], unidades[8])
+            console.log(criando_lista[8])
+
+          }      
+        }
+
+        else if(codigo_essencial == "K0NU9"){
+
+          codigo_original[9] = "g19.1-T";
+          console.log(codigo_original[9])
+
+          if(lista_de_publicacoes.has(codigo_original[9]) === true){
+
+            contado_somar[9] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[9] = parseInt(lista_de_publicacoes.get(codigo_original[9]) + contado_somar[9]);
+            lista_de_publicacoes.set(codigo_original[9], unidades[9]);
+            console.log('Quantidade', unidades[9])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[9] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[9] = lista_de_publicacoes.set(codigo_original[9], unidades[9])
+            console.log(criando_lista[9])
+
+          }      
+        }
+
+        else if(codigo_essencial == "KIJYF"){
+
+          codigo_original[10] = "g19.3-T";
+          console.log(codigo_original[10])
+
+          if(lista_de_publicacoes.has(codigo_original[10]) === true){
+
+            contado_somar[10] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[10] = parseInt(lista_de_publicacoes.get(codigo_original[10]) + contado_somar[10]);
+            lista_de_publicacoes.set(codigo_original[10], unidades[10]);
+            console.log('Quantidade', unidades[10])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[10] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[10] = lista_de_publicacoes.set(codigo_original[10], unidades[10])
+            console.log(criando_lista[10])
+
+          }      
+        }
+
+        else if(codigo_essencial == "L6TBH"){
+
+          codigo_original[11] = "g20.1-T";
+          console.log(codigo_original[11])
+
+          if(lista_de_publicacoes.has(codigo_original[11]) === true){
+
+            contado_somar[11] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[11] = parseInt(lista_de_publicacoes.get(codigo_original[11]) + contado_somar[11]);
+            lista_de_publicacoes.set(codigo_original[11], unidades[11]);
+            console.log('Quantidade', unidades[11])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[11] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[11] = lista_de_publicacoes.set(codigo_original[11], unidades[11])
+            console.log(criando_lista[11])
+
+          }      
+        }
+
+        else if(codigo_essencial == "LG0DJ"){
+
+          codigo_original[12] = "g20.2-T";
+          console.log(codigo_original[12])
+
+          if(lista_de_publicacoes.has(codigo_original[12]) === true){
+
+            contado_somar[12] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[12] = parseInt(lista_de_publicacoes.get(codigo_original[12]) + contado_somar[12]);
+            lista_de_publicacoes.set(codigo_original[12], unidades[12]);
+            console.log('Quantidade', unidades[12])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[12] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[12] = lista_de_publicacoes.set(codigo_original[12], unidades[12])
+            console.log(criando_lista[12])
+
+          }      
+        }
+
+        else if(codigo_essencial == "GQVIB"){
+
+          codigo_original[13] = "ypq-T";
+          console.log(codigo_original[13])
+
+          if(lista_de_publicacoes.has(codigo_original[13]) === true){
+
+            contado_somar[13] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[13] = parseInt(lista_de_publicacoes.get(codigo_original[13]) + contado_somar[13]);
+            lista_de_publicacoes.set(codigo_original[13], unidades[13]);
+            console.log('Quantidade', unidades[13])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[13] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[13] = lista_de_publicacoes.set(codigo_original[13], unidades[13])
+            console.log(criando_lista[13])
+
+          }      
+        }
+
+        else if(codigo_essencial == "DAD8J"){
+
+          codigo_original[14] = "hf-T";
+          console.log(codigo_original[14])
+
+          if(lista_de_publicacoes.has(codigo_original[14]) === true){
+
+            contado_somar[14] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[14] = parseInt(lista_de_publicacoes.get(codigo_original[14]) + contado_somar[14]);
+            lista_de_publicacoes.set(codigo_original[14], unidades[14]);
+            console.log('Quantidade', unidades[14])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[14] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[14] = lista_de_publicacoes.set(codigo_original[14], unidades[14])
+            console.log(criando_lista[14])
+
+          }      
+        }
+
+        else if(codigo_essencial == "AFROY"){
+
+          codigo_original[15] = "ld-T";
+          console.log(codigo_original[15])
+
+          if(lista_de_publicacoes.has(codigo_original[15]) === true){
+
+            contado_somar[15] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[15] = parseInt(lista_de_publicacoes.get(codigo_original[15]) + contado_somar[15]);
+            lista_de_publicacoes.set(codigo_original[15], unidades[15]);
+            console.log('Quantidade', unidades[15])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[15] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[15] = lista_de_publicacoes.set(codigo_original[15], unidades[15])
+            console.log(criando_lista[15])
+
+          }      
+        }
+
+        else if(codigo_essencial == "AF73V"){
+
+          codigo_original[16] = "ll-T";
+          console.log(codigo_original[16])
+
+          if(lista_de_publicacoes.has(codigo_original[16]) === true){
+
+            contado_somar[16] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[16] = parseInt(lista_de_publicacoes.get(codigo_original[16]) + contado_somar[16]);
+            lista_de_publicacoes.set(codigo_original[16], unidades[16]);
+            console.log('Quantidade', unidades[16])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[16] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[16] = lista_de_publicacoes.set(codigo_original[16], unidades[16])
+            console.log(criando_lista[16])
+
+          }      
+        }
+
+        else if(codigo_essencial == "CEUTC"){
+
+          codigo_original[17] = "mb-T";
+          console.log(codigo_original[17])
+
+          if(lista_de_publicacoes.has(codigo_original[17]) === true){
+
+            contado_somar[17] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[17] = parseInt(lista_de_publicacoes.get(codigo_original[17]) + contado_somar[17]);
+            lista_de_publicacoes.set(codigo_original[17], unidades[17]);
+            console.log('Quantidade', unidades[17])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[17] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[17] = lista_de_publicacoes.set(codigo_original[17], unidades[17])
+            console.log(criando_lista[17])
+
+          }      
+        }
+
+        else if(codigo_essencial == "ENRQE"){
+
+          codigo_original[18] = "rj-T";
+          console.log(codigo_original[18])
+
+          if(lista_de_publicacoes.has(codigo_original[18]) === true){
+
+            contado_somar[18] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[18] = parseInt(lista_de_publicacoes.get(codigo_original[18]) + contado_somar[18]);
+            lista_de_publicacoes.set(codigo_original[18], unidades[18]);
+            console.log('Quantidade', unidades[18])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[18] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[18] = lista_de_publicacoes.set(codigo_original[18], unidades[18])
+            console.log(criando_lista[18])
+
+          }      
+        }
+
+        else if(codigo_essencial == "N0F57"){
+
+          codigo_original[19] = "lffi-T";
+          console.log(codigo_original[19])
+
+          if(lista_de_publicacoes.has(codigo_original[19]) === true){
+
+            contado_somar[19] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[19] = parseInt(lista_de_publicacoes.get(codigo_original[19]) + contado_somar[19]);
+            lista_de_publicacoes.set(codigo_original[19], unidades[19]);
+            console.log('Quantidade', unidades[19])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[19] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[19] = lista_de_publicacoes.set(codigo_original[19], unidades[19])
+            console.log(criando_lista[19])
+
+          }      
+        }
+
+        else if(codigo_essencial == "DD4F4"){
+
+          codigo_original[20] = "T-37-T";
+          console.log(codigo_original[20])
+
+          if(lista_de_publicacoes.has(codigo_original[20]) === true){
+
+            contado_somar[20] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[20] = parseInt(lista_de_publicacoes.get(codigo_original[20]) + contado_somar[20]);
+            lista_de_publicacoes.set(codigo_original[20], unidades[20]);
+            console.log('Quantidade', unidades[20])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[20] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[20] = lista_de_publicacoes.set(codigo_original[20], unidades[20])
+            console.log(criando_lista[20])
+
+          }      
+        }
+
+        else if(codigo_essencial == "CHF7H"){
+
+          codigo_original[21] = "T-35-T";
+          console.log(codigo_original[21])
+
+          if(lista_de_publicacoes.has(codigo_original[21]) === true){
+
+            contado_somar[21] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[21] = parseInt(lista_de_publicacoes.get(codigo_original[21]) + contado_somar[21]);
+            lista_de_publicacoes.set(codigo_original[21], unidades[21]);
+            console.log('Quantidade', unidades[21])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[21] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[21] = lista_de_publicacoes.set(codigo_original[21], unidades[21])
+            console.log(criando_lista[21])
+
+          }      
+        }
+
+        else if(codigo_essencial == "CBN80"){
+
+          codigo_original[22] = "T-33-T";
+          console.log(codigo_original[22])
+
+          if(lista_de_publicacoes.has(codigo_original[22]) === true){
+
+            contado_somar[22] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[22] = parseInt(lista_de_publicacoes.get(codigo_original[22]) + contado_somar[22]);
+            lista_de_publicacoes.set(codigo_original[22], unidades[22]);
+            console.log('Quantidade', unidades[22])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[22] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[22] = lista_de_publicacoes.set(codigo_original[22], unidades[22])
+            console.log(criando_lista[22])
+
+          }      
+        }
+
+        else if(codigo_essencial == "M6GRH"){
+
+          codigo_original[23] = "lff-T";
+          console.log(codigo_original[23])
+
+          if(lista_de_publicacoes.has(codigo_original[23]) === true){
+
+            contado_somar[23] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[23] = parseInt(lista_de_publicacoes.get(codigo_original[23]) + contado_somar[23]);
+            lista_de_publicacoes.set(codigo_original[23], unidades[23]);
+            console.log('Quantidade', unidades[23])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[23] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[23] = lista_de_publicacoes.set(codigo_original[23], unidades[23])
+            console.log(criando_lista[23])
+
+          }      
+        }
+
+        else if(codigo_essencial == "JIVFP"){
+
+          codigo_original[24] = "th-T";
+          console.log(codigo_original[24])
+
+          if(lista_de_publicacoes.has(codigo_original[24]) === true){
+
+            contado_somar[24] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[24] = parseInt(lista_de_publicacoes.get(codigo_original[24]) + contado_somar[24]);
+            lista_de_publicacoes.set(codigo_original[24], unidades[24]);
+            console.log('Quantidade', unidades[24])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[24] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[24] = lista_de_publicacoes.set(codigo_original[24], unidades[24])
+            console.log(criando_lista[24])
+
+          }      
+        }
+
+        else if(codigo_essencial == "560J0"){
+
+          codigo_original[25] = "od-T";
+          console.log(codigo_original[25])
+
+          if(lista_de_publicacoes.has(codigo_original[25]) === true){
+
+            contado_somar[25] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[25] = parseInt(lista_de_publicacoes.get(codigo_original[25]) + contado_somar[25]);
+            lista_de_publicacoes.set(codigo_original[25], unidades[25]);
+            console.log('Quantidade', unidades[25])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[25] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[25] = lista_de_publicacoes.set(codigo_original[25], unidades[25])
+            console.log(criando_lista[25])
+
+          }      
+        }
+
+        else if(codigo_essencial == "IDS7A"){
+
+          codigo_original[26] = "rr-T";
+          console.log(codigo_original[26])
+
+          if(lista_de_publicacoes.has(codigo_original[26]) === true){
+
+            contado_somar[26] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[26] = parseInt(lista_de_publicacoes.get(codigo_original[26]) + contado_somar[26]);
+            lista_de_publicacoes.set(codigo_original[26], unidades[26]);
+            console.log('Quantidade', unidades[26])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[26] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[26] = lista_de_publicacoes.set(codigo_original[26], unidades[26])
+            console.log(criando_lista[26])
+
+          }      
+        }
+
+        else if(codigo_essencial == "91M65"){
+
+          codigo_original[27] = "bt-T";
+          console.log(codigo_original[27])
+
+          if(lista_de_publicacoes.has(codigo_original[27]) === true){
+
+            contado_somar[27] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[27] = parseInt(lista_de_publicacoes.get(codigo_original[27]) + contado_somar[27]);
+            lista_de_publicacoes.set(codigo_original[27], unidades[27]);
+            console.log('Quantidade', unidades[27])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[27] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[27] = lista_de_publicacoes.set(codigo_original[27], unidades[27])
+            console.log(criando_lista[27])
+
+          }      
+        }
+
+        else if(codigo_essencial == "3XT0O"){
+
+          codigo_original[28] = "ay-T";
+          console.log(codigo_original[28])
+
+          if(lista_de_publicacoes.has(codigo_original[28]) === true){
+
+            contado_somar[28] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[28] = parseInt(lista_de_publicacoes.get(codigo_original[28]) + contado_somar[28]);
+            lista_de_publicacoes.set(codigo_original[28], unidades[28]);
+            console.log('Quantidade', unidades[28])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[28] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[28] = lista_de_publicacoes.set(codigo_original[28], unidades[28])
+            console.log(criando_lista[28])
+
+          }      
+        }
+
+        else if(codigo_essencial == "ERWBZ"){
+
+          codigo_original[29] = "bhs-T";
+          console.log(codigo_original[29])
+
+          if(lista_de_publicacoes.has(codigo_original[29]) === true){
+
+            contado_somar[29] = parseInt(prompt("Digite o número de publicações contadas: "))
+            unidades[29] = parseInt(lista_de_publicacoes.get(codigo_original[29]) + contado_somar[29]);
+            lista_de_publicacoes.set(codigo_original[29], unidades[29]);
+            console.log('Quantidade', unidades[29])
+            console.log(lista_de_publicacoes)
+            
+          }
+
+          else{
+
+            unidades[29] = parseInt(prompt("Digite o número de publicações contadas: "));
+            criando_lista[29] = lista_de_publicacoes.set(codigo_original[29], unidades[29])
+            console.log(criando_lista[29])
+
+          }      
+        }
+
+        else{
+
+          console.log("Publicação não encontrada no inventário")
+
+        }
+        console.log(unidades)
+        return unidades; // ou return document.getElementsByClassName(unidades)
+      }
+               
+      function error(err) {
+        console.log(err);
+      }
+
+      function finalizar_scanner(){
+        console.log(codigo_original)
+        document.getElementById('botao_finalizar').remove();
+        console.log(unidades)
+        console.log(lista_de_publicacoes)
+        scanner.clear();
+        document.getElementById('reader').remove();
+        document.getElementById('result').innerHTML=`
+          <div class="container">
+            <h2>Sentinela</h2>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>Sentinela 2º 2018 = <strong>${unidades[0]}</strong> </td>
+                    <td>Sentinela 2º 2019 = <strong>${unidades[1]}</strong> </td>
+                    <td>Sentinela 3º 2019 = <strong>${unidades[2]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Sentinela 1º 2020 = <strong>${unidades[3]}</strong> </td>
+                    <td>Sentinela 2º 2020 = <strong>${unidades[4]}</strong> </td>
+                    <td>Sentinela 2º 2021 = <strong>${unidades[5]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Sentinela 1º 2022 = <strong>${unidades[6]}</strong> </td>
+                </tr>
+            </table>
+            <h2>Despertai</h2>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>Outras Revistas (S + D) = <strong>${unidades[7]}</strong> </td>
+                    <td>Despertai 2º 2018 = <strong>${unidades[8]}</strong> </td>
+                    <td>Despertai 1º 2019 = <strong>${unidades[9]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Despertai 3º 2019 = <strong>${unidades[10]}</strong> </td>
+                    <td>Despertai 1º 2020 = <strong>${unidades[11]}</strong> </td>
+                    <td>Despertai 2º 2020 = <strong>${unidades[12]}</strong> </td>
+                </tr>
+            </table>
+            <h2>Brochuras</h2>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>10 perguntas jovens = <strong>${unidades[13]}</strong> </td>
+                    <td>Família Feliz (Brochura) = <strong>${unidades[14]}</strong> </td>
+                    <td>Escute a Deus = <strong>${unidades[15]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Escute e Viva = <strong>${unidades[16]}</strong> </td>
+                    <td>1ªs lições da bíblia = <strong>${unidades[17]}</strong> </td>
+                    <td>Volte para Jeová = <strong>${unidades[18]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Seja feliz (brochura) = <strong>${unidades[19]}</strong> </td>
+                </tr>
+            </table>
+            <h2>Folhetos</h2>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>Respostas Importantes = <strong>${unidades[20]}</strong> </td>
+                    <td>Voltar a viver = <strong>${unidades[21]}</strong> </td>
+                    <td>Quem Controla o Mundo = <strong>${unidades[22]}</strong> </td>
+                </tr>
+            </table>
+            <h2>Livros e livretos</h2>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td>Seja Feliz (livro) = <strong>${unidades[23]}</strong> </td>
+                    <td>Melhore = <strong>${unidades[24]}</strong> </td>
+                    <td>Organizados = <strong>${unidades[25]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Adoraçao Pura = <strong>${unidades[26]}</strong> </td>
+                    <td>Testemunho Cabal = <strong>${unidades[27]}</strong> </td>
+                    <td>Aplique-se a leitura = <strong>${unidades[28]}</strong> </td>
+                </tr>
+                <tr>
+                    <td>Entenda a bíblia = <strong>${unidades[29]}</strong> </td>
+                </tr>
+            </table>
+          <div>
+          `;
+      }
+    </script>
+  </body>
+</html>
