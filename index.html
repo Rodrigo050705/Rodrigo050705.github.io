@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem por QR Code</title>
+</head>
+<body>
+    <h1>Contagem através de QR Code parte 1</h1>
+    <video id="webcam" autoplay playsinline></video>
+    <script>
+      window.resizeTo(338,282);
+      const videoElement = document.getElementById("webcam");
+      navigator.mediaDevices
+        .getUserMedia({
+          video: {
+            facingMode: "environment",
+          },
+        })
+        .then((stream) => {
+          videoElement.srcObject = stream;
+        });
+    </script>
