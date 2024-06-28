@@ -52,3 +52,8 @@ function somar_8(){
     document.getElementById("sem_qr_8").innerHTML = total_8;
 }
 
+total_9 = 0;
+function somar_9(){
+    total_9 = parseFloat(document.getElementById("digitar_9").value) + total_9;
+    document.getElementById("sem_qr_9").innerHTML = total_9;
+}
